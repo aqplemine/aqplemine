@@ -1,5 +1,7 @@
 ## Hi there 👋
 
+This is some stuff about me!
+
 <!--
 **aqplemine/aqplemine** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
