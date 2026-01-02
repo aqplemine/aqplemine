@@ -20,19 +20,19 @@ Preset:
 - ⚡ Fun fact: I have spent over 1,000 hours on Minecraft and Roblox. (Per each, so it's 1,000 hours per game.)
 
 About me:
-##{ Don't bully me for being small. It's growing. Trust me. (: }
--Roblox game developer. Not a big one, but a one.
--65k+ visits total on my games.
--Over 35 followers.
--Made ~2k robux total from developing. Not a lot, but I'm proud.
--105+ total group members (and growing.)
--Joined roblox in 2022.
--Contributed to over 5.5M+ total game visits.
--Contributed to over 5k group members.
--Got 55k+ visits in only 1 of my series. (Series is still continuing.)
--Game with most visits: [anonymous], 30K+ visits.
--Gave away 3k+ Robux.
--HD Admin, Adonis Admin, and Kohl's Admin, very big nerd of those 3. 🤓 (I love it!)
--Working on many big projects, such as [anonymous], [anonymous] and [anonymous.]
--Contributing on github.
--Very proud. (:
+##Don't bully me for being small. It's growing. Trust me. (:
+- Roblox game developer. Not a big one, but a one.
+- 65k+ visits total on my games.
+- Over 35 followers.
+- Made ~2k robux total from developing. Not a lot, but I'm proud.
+- 105+ total group members (and growing.)
+- Joined roblox in 2022.
+- Contributed to over 5.5M+ total game visits.
+- Contributed to over 5k group members.
+- Got 55k+ visits in only 1 of my series. (Series is still continuing.)
+- Game with most visits: [anonymous], 30K+ visits.
+- Gave away 3k+ Robux.
+- HD Admin, Adonis Admin, and Kohl's Admin, very big nerd of those 3. 🤓 (I love it!)
+- Working on many big projects, such as [anonymous], [anonymous] and [anonymous.]
+- Contributing on github.
+- Very proud. (:
