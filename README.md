@@ -19,7 +19,6 @@ Preset:
 - 😄 Pronouns: He/Him.
 - ⚡ Fun fact: I have spent over 1,000 hours on Minecraft and Roblox. (Per each, so it's 1,000 hours per game.)
 
-About me:
 ##Don't bully me for being small. It's growing. Trust me. (:
 - Roblox game developer. Not a big one, but a one.
 - 65k+ visits total on my games.
