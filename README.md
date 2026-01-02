@@ -20,6 +20,7 @@ Preset:
 - ⚡ Fun fact: I have spent over 1,000 hours on Minecraft and Roblox. (Per each, so it's 1,000 hours per game.)
 
 About Me: Don't bully me for being small. It's growing. Trust me. (:
+- HeadAdmin/Owner Rank of games with 1-5M+ visits. (And some more games, NO, I didn't buy the rank, I earned it.)
 - Roblox game developer. Not a big one, but a one.
 - 65k+ visits total on my games.
 - Over 35 followers.
