@@ -29,7 +29,7 @@ About Me: Don't bully me for being small. It's growing. Trust me. (:
 - Joined roblox in 2022.
 - Contributed to over 5.5M+ total game visits.
 - Contributed to over 5k group members.
-- Got 55k+ visits in only 1 of my series. (Series is still continuing.)
+- Got 55k+ visits in only 1 of my series/games. (Series is still continuing.)
 - Game with most visits: [anonymous], 30K+ visits.
 - Gave away 3k+ Robux.
 - HD Admin, Adonis Admin, and Kohl's Admin, very big nerd of those 3. 🤓 (I love it!)
