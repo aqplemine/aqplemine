@@ -1,38 +1,41 @@
-## Hi there 👋
-
-This is some stuff about me!
-
-Note: I'm staying anonymous for now.
-
+<!DOCTYPE html>
 <!--
-**aqplemine/aqplemine** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+  REAL_ALGEBRA_MATH_PROBLEMS: index
+  Description: REAL MATH GAMES NOT FAKE :D
 -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>PREMIUM | Algebra Math Problems</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Your HTML Here -->
+    <!DOCTYPE html>
+<html>
+<body>
 
-Preset:
+<script>
+alert("Note, you are accessing our premium math problems, so it requires a subscription key, as these math problems have taken us days to come up with.");
+if (confirm("Would you like to try your subscription key, or leave our website?")) {
+  let userInput = prompt("Please enter your subscription key to access our premium math products:");
 
-- 🔭 I’m currently working on [anonymous]
-- 🌱 I’m currently learning How to develop on roblox, even better!
-- 👯 I’m looking to collaborate on [anonymous]
-- 🤔 I’m looking for help with [anonymous]
-- 💬 Ask me about Anything roblox studio related, or some other video games. (:
-- 📫 How to reach me: Github, or my roblox, @[anonymous]
-- 😄 Pronouns: He/Him.
-- ⚡ Fun fact: I have spent over 1,000 hours on Minecraft and Roblox. (Per each, so it's 1,000 hours per game.)
+if (userInput === null || userInput !== "realgames2026") {
+    window.location.href = "https://www.google.com/Acces_Denied._Subscription_Key_Required_To_Unlock_Extended_Algebra_Problems.";
+}
+} else {
+    window.location.href = "https://www.google.com/Acces_Denied._Subscription_Key_Required_To_Unlock_Extended_Algebra_Problems.";
+}
 
-About Me: Don't bully me for being small. It's growing. Trust me. (:
-- HeadAdmin/Owner Rank of games with 1-5M+ visits. (And some more games, NO, I didn't buy the rank, I earned it.)
-- Roblox game developer. Not a big one, but a one.
-- 65k+ visits total on my games.
-- Over 35 followers.
-- Made ~2k robux total from developing. Not a lot, but I'm proud.
-- 105+ total group members (and growing.)
-- Joined roblox in 2022.
-- Contributed to over 5.5M+ total game visits.
-- Contributed to over 5k group members.
-- Got 55k+ visits in only 1 of my series/games. (Series is still continuing.)
-- Game with most visits: [anonymous], 30K+ visits.
-- Gave away 3k+ Robux.
-- HD Admin, Adonis Admin, and Kohl's Admin, very big nerd of those 3. 🤓 (I love it!)
-- Working on many big projects, such as [anonymous], [anonymous] and [anonymous.]
-- Contributing on github.
-- Very proud. (:
+</script>
+COMING SOON: Embedded games, right in this website.
+</body>
+</html>
+
+<a href="https://www.google.com/In_Fixing_Don't_Worry_I'm_Fixing_It!" target="_blank"><button>[IN FIXING][USE THE SAMEPASSCODE AS LISTED HERE] View my uploaded games (external, but by me)</button></a>
+<button 
+        onclick='fetch("https://cdn.jsdelivr.net/gh/bubbls/ugs-singlefile@main/AASINGLEFILE.html?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});' 
+        style="width: 100%; height: 100%; font-size: 100;"
+        >View other online unblocked games (external, should be always unblocked!)</button>
+  </body>
+</html>
