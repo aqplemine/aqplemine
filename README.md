@@ -1,3 +1,4 @@
+- NOTE: I am new to HTML and I make a lot of random projects. I just wanna test some stuffs. (:
 Hi there 👋
 This is some stuff about me!
 
