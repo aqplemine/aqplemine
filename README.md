@@ -14,14 +14,14 @@ Preset:
 - 📫 How to reach me: Github, or my roblox, @[anonymous]
 - 😄 Pronouns: He/Him.
 - ⚡ Fun fact: I have spent over 1,000 hours on Minecraft and Roblox. (Per each, so it's 1,000 hours per game.)
-About Me: Don't bully me for being small. It's growing. Trust me. (:
-
+- About Me: Don't bully me for being small. It's growing. Trust me. (:
+- Custom:
 - HeadAdmin/Owner Rank of games with 1-5M+ visits. (And some more games, NO, I didn't buy the rank, I earned it.)
 - Roblox game developer. Not a big one, but a one.
 - 65k+ visits total on my games.
 - Over 35 followers.
 - Made ~2k robux total from developing. Not a lot, but I'm proud.
-- 105+ total group members (and growing.)
+- 120+ total group members (and growing.)
 - Joined roblox in 2022.
 - Contributed to over 5.5M+ total game visits.
 - Contributed to over 5k group members.
