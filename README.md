@@ -1,6 +1,9 @@
 ## Hi there 👋
 coming soon
 
+<img width="144" height="144" alt="Image" src="https://github.com/user-attachments/assets/f7c9eb87-98eb-4602-8819-5ddee4a2989d" />
+yummy ngl
+
 <!--
 **aqplemine/aqplemine** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
