@@ -21,7 +21,7 @@ ok heres githubs thingy:
 - 😄 Pronouns: he/him
 - ⚡ Fun fact: i have 1K+ hours in minecraft. i love it!!!!!
 anyways get outta here
-
+- p.s. i dont know how github works im doing a lot of guessing lol
 <!--
 **aqplemine/aqplemine** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
