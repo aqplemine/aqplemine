@@ -17,7 +17,7 @@ ok heres githubs thingy:
 - 👯 I’m looking to collaborate on my **games**, and **groups**.
 - 🤔 I’m looking for help with making my games go ***big*!**
 - 💬 Ask me about scripting help, idrk.
-- 📫 How to reach me: email me (email is shown publicly on github, if u cant access it it's [aqplemine@proton.me](mailto:aqplemine@proton.me)
+- 📫 How to reach me: email me here: [aqplemine@proton.me](mailto:aqplemine@proton.me)
 - 😄 Pronouns: he/him
 - ⚡ Fun fact: i have 1K+ hours in minecraft. i love it!!!!!
 anyways get outta here
