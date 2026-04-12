@@ -88,3 +88,6 @@ I'm open to collabs on Roblox games and groups. If you've got a cool idea, hit m
 <div align="center">
 *yes bro this was made by claude ai idk wth im doing but i think im doing it righttt (:*
 </div>
+<div align ="center">
+my github site https://aqplemine.github.io
+</div>
