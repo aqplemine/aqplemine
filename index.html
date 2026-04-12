@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>aqplemine — roblox dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #07070e;
+      --bg1:       #0d0d1a;
+      --bg2:       #12121f;
+      --surface:   rgba(255,255,255,0.04);
+      --border:    rgba(255,255,255,0.08);
+      --border-hi: rgba(255,255,255,0.16);
+      --lime:   #c8ff57;
+      --teal:   #00e8c8;
+      --amber:  #ffb347;
+      --pink:   #ff5fa0;
+      --blue:   #5ab8ff;
+      --text:   #f0f0f8;
+      --muted:  #6b6b8a;
+      --dimmed: #3a3a58;
+      --display: 'Outfit', sans-serif;
+      --mono:    'DM Mono', monospace;
+      --radius:  16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--display);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* noise overlay */
+    body::after {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay; opacity:.5;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      padding: 1.25rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(7,7,14,0.7);
+      backdrop-filter: blur(20px) saturate(1.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: -.02em;
+      display:flex; align-items:center; gap:.5rem;
+    }
+    .nav-dot {
+      width:8px; height:8px; border-radius:50%;
+      background: var(--lime); box-shadow: 0 0 10px var(--lime);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:.85rem; font-weight:500; color:var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      padding: 8rem 3rem 4rem;
+      position: relative; overflow:hidden;
+      max-width: 1300px; margin:0 auto;
+    }
+    .hero-orb1 {
+      position:absolute; border-radius:50%; filter:blur(120px); pointer-events:none;
+      width:700px; height:700px; background:rgba(200,255,87,0.06);
+      top:-200px; right:-200px; animation:orbFloat1 12s ease-in-out infinite;
+    }
+    .hero-orb2 {
+      position:absolute; border-radius:50%; filter:blur(120px); pointer-events:none;
+      width:500px; height:500px; background:rgba(0,232,200,0.05);
+      bottom:-100px; left:-100px; animation:orbFloat2 15s ease-in-out infinite;
+    }
+    @keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,30px)} }
+    @keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-40px)} }
+
+    .hero-label {
+      font-family: var(--mono); font-size:.8rem;
+      color: var(--lime); letter-spacing:.15em;
+      margin-bottom:1.5rem;
+      display:flex; align-items:center; gap:.6rem;
+      opacity:0; animation: riseIn .6s ease .1s forwards; position:relative; z-index:1;
+    }
+    .hero-label::before { content:''; display:block; width:24px; height:1px; background:var(--lime); }
+
+    h1.hero-name {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900; letter-spacing: -.04em; line-height: 1;
+      background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .75rem;
+      opacity:0; animation: riseIn .7s ease .2s forwards; position:relative; z-index:1;
+    }
+    .hero-sub {
+      font-size: clamp(1.2rem,3vw,2rem); font-weight:400; color: var(--muted); letter-spacing:-.01em;
+      margin-bottom:2.5rem;
+      opacity:0; animation: riseIn .7s ease .3s forwards; position:relative; z-index:1;
+    }
+    .hero-sub strong { color: var(--text); font-weight:600; }
+
+    .hero-chips {
+      display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:3rem;
+      opacity:0; animation: riseIn .7s ease .4s forwards; position:relative; z-index:1;
+    }
+    .chip {
+      padding:.4rem 1rem; border-radius:999px;
+      font-size:.8rem; font-weight:500;
+      background:var(--surface); border:1px solid var(--border); color:var(--muted);
+    }
+    .chip.lime  { border-color:rgba(200,255,87,.3);  color:var(--lime); }
+    .chip.teal  { border-color:rgba(0,232,200,.3);   color:var(--teal); }
+    .chip.amber { border-color:rgba(255,179,71,.3);  color:var(--amber); }
+    .chip.pink  { border-color:rgba(255,95,160,.3);  color:var(--pink); }
+
+    .hero-cta {
+      display:flex; gap:1rem; flex-wrap:wrap;
+      opacity:0; animation: riseIn .7s ease .5s forwards; position:relative; z-index:1;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.75rem; border-radius:12px;
+      font-family:var(--display); font-size:.9rem; font-weight:600;
+      cursor:pointer; border:none; transition: all .2s;
+    }
+    .btn-fill { background: var(--lime); color:#07070e; }
+    .btn-fill:hover { background:#d6ff6e; transform:translateY(-2px); box-shadow:0 8px 30px rgba(200,255,87,.3); }
+    .btn-ghost { background:var(--surface); color:var(--text); border:1px solid var(--border); }
+    .btn-ghost:hover { border-color:var(--border-hi); transform:translateY(-2px); background:rgba(255,255,255,.06); }
+
+    .scroll-hint {
+      position:absolute; bottom:3rem; left:3rem;
+      font-family:var(--mono); font-size:.7rem; color:var(--dimmed);
+      display:flex; align-items:center; gap:.5rem;
+      opacity:0; animation: riseIn .6s ease 1s forwards;
+    }
+    .scroll-hint::after {
+      content:''; display:block; width:1px; height:40px;
+      background:linear-gradient(to bottom, var(--dimmed), transparent);
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background:var(--bg1); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      padding:1.5rem 3rem; display:flex; flex-wrap:wrap; justify-content:center;
+    }
+    .stat {
+      flex:1; min-width:160px; display:flex; flex-direction:column; align-items:center; gap:.3rem;
+      padding:1rem 1.5rem; border-right:1px solid var(--border);
+    }
+    .stat:last-child { border-right:none; }
+    .stat-val {
+      font-size:2rem; font-weight:800; letter-spacing:-.03em;
+      background:linear-gradient(135deg,var(--lime),var(--teal));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .stat-label { font-size:.75rem; color:var(--muted); font-family:var(--mono); text-align:center; }
+
+    /* SECTIONS */
+    .section-wrap { max-width:1300px; margin:0 auto; padding:6rem 3rem; }
+    .section-header { margin-bottom:3rem; }
+    .section-eyebrow {
+      font-family:var(--mono); font-size:.75rem; color:var(--lime); letter-spacing:.15em;
+      margin-bottom:.75rem; display:flex; align-items:center; gap:.5rem;
+    }
+    .section-eyebrow::before { content:'//'; opacity:.5; }
+    .section-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:800; letter-spacing:-.03em; color:var(--text); }
+    .section-title span {
+      background:linear-gradient(135deg,var(--lime),var(--teal));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+
+    /* PROJECT CARDS */
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.25rem; }
+    .p-card {
+      background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+      padding:1.75rem; display:flex; flex-direction:column; gap:.75rem;
+      position:relative; overflow:hidden;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .p-card::before {
+      content:''; position:absolute; inset:0; border-radius:var(--radius);
+      background:radial-gradient(circle at top left, var(--card-glow,rgba(200,255,87,0.05)), transparent 60%);
+      pointer-events:none;
+    }
+    .p-card:hover {
+      border-color:var(--card-border,rgba(200,255,87,.3));
+      transform:translateY(-4px);
+      box-shadow: 0 20px 60px var(--card-shadow,rgba(200,255,87,.08));
+    }
+    .p-card-top { display:flex; justify-content:space-between; align-items:flex-start; }
+    .p-card-icon {
+      width:44px; height:44px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+      background:var(--bg2); border:1px solid var(--border);
+    }
+    .p-card-status {
+      font-family:var(--mono); font-size:.65rem; font-weight:500;
+      padding:.25rem .65rem; border-radius:999px;
+      display:flex; align-items:center; gap:.3rem;
+    }
+    .p-card-status::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; }
+    .status-active { color:var(--lime);  background:rgba(200,255,87,.1);  border:1px solid rgba(200,255,87,.2); }
+    .status-group  { color:var(--teal);  background:rgba(0,232,200,.1);   border:1px solid rgba(0,232,200,.2); }
+    .status-wip    { color:var(--amber); background:rgba(255,179,71,.1);  border:1px solid rgba(255,179,71,.2); }
+    .p-card h3 { font-size:1rem; font-weight:700; letter-spacing:-.02em; color:var(--text); }
+    .p-card p  { font-size:.875rem; line-height:1.65; color:var(--muted); flex:1; }
+    .p-card-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .p-tag {
+      font-size:.7rem; font-family:var(--mono); padding:.2rem .6rem; border-radius:6px;
+      background:var(--bg2); border:1px solid var(--border); color:var(--muted);
+    }
+    .p-card-link {
+      display:inline-flex; align-items:center; gap:.4rem;
+      font-size:.82rem; font-weight:600; color:var(--muted);
+      border-top:1px solid var(--border); padding-top:.75rem; margin-top:.25rem;
+      transition:color .2s;
+    }
+    .p-card-link:hover { color:var(--text); }
+    .p-card-link svg { transition:transform .2s; }
+    .p-card-link:hover svg { transform:translate(2px,-2px); }
+
+    /* ABOUT */
+    .about-layout { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .about-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:2rem;
+    }
+    .about-card-title { font-family:var(--mono); font-size:.7rem; color:var(--lime); letter-spacing:.1em; margin-bottom:1.5rem; }
+    .fact-row {
+      display:flex; align-items:flex-start; gap:.9rem;
+      padding:.75rem 0; border-bottom:1px solid var(--border);
+      font-size:.875rem; color:var(--muted); line-height:1.5;
+    }
+    .fact-row:last-child { border-bottom:none; }
+    .fact-row .ico { font-size:1rem; flex-shrink:0; margin-top:.05rem; }
+    .fact-row strong { color:var(--text); font-weight:600; }
+    .fact-row a { color:var(--teal); }
+
+    .skill + .skill { margin-top:1.2rem; }
+    .skill-head {
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:.78rem; font-weight:500; margin-bottom:.5rem; color:var(--muted);
+    }
+    .skill-head span:last-child { font-family:var(--mono); color:var(--dimmed); }
+    .skill-track { height:6px; background:var(--bg2); border-radius:999px; overflow:hidden; }
+    .skill-thumb { height:100%; border-radius:999px; width:0; transition:width 1.4s cubic-bezier(.16,1,.3,1); }
+
+    /* CONTACT */
+    .contact-blob {
+      background:var(--bg1); border:1px solid var(--border);
+      border-radius:24px; padding:4rem 3rem;
+      text-align:center; position:relative; overflow:hidden;
+    }
+    .contact-orb {
+      position:absolute; border-radius:50%; filter:blur(120px); pointer-events:none;
+      width:500px; height:500px; background:rgba(200,255,87,.04);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+    }
+    .contact-blob h2 {
+      font-size:clamp(2rem,5vw,3.5rem); font-weight:800; letter-spacing:-.03em;
+      position:relative; z-index:1; margin-bottom:.75rem;
+    }
+    .contact-blob p {
+      color:var(--muted); font-size:1rem; line-height:1.7;
+      position:relative; z-index:1; max-width:500px; margin:0 auto 2.5rem;
+    }
+    .contact-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative; z-index:1; }
+
+    /* FOOTER */
+    footer {
+      border-top:1px solid var(--border); padding:2rem 3rem;
+      max-width:1300px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+    }
+    footer p { font-size:.8rem; color:var(--dimmed); font-family:var(--mono); }
+    .footer-dot { color:var(--lime); }
+
+    /* ANIMATIONS */
+    @keyframes riseIn {
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      nav { padding:1rem 1.5rem; }
+      .nav-links { gap:1.2rem; }
+      #hero, .section-wrap { padding-left:1.5rem; padding-right:1.5rem; }
+      .stats-bar { padding:1rem 1.5rem; }
+      .stat { min-width:130px; }
+      footer { padding:2rem 1.5rem; }
+      .contact-blob { padding:2.5rem 1.5rem; }
+      .about-layout { grid-template-columns:1fr; }
+      .scroll-hint { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-dot"></div>
+    aqplemine
+  </div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/aqplemine" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-label">Roblox Developer &amp; Game Designer</div>
+  <h1 class="hero-name">aqplemine</h1>
+  <p class="hero-sub">Building <strong>games people play</strong> — one broken table at a time.</p>
+  <div class="hero-chips">
+    <span class="chip lime">🎮 Roblox Studio</span>
+    <span class="chip teal">⛏ 1K+ hrs Minecraft</span>
+    <span class="chip amber">📦 4 Groups Owned</span>
+    <span class="chip pink">🍞 Bread Physics Researcher</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-fill">See My Projects</a>
+    <a href="https://github.com/aqplemine" target="_blank" class="btn btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<div class="stats-bar reveal">
+  <div class="stat"><div class="stat-val">1.5M+</div><div class="stat-label">visits on own games</div></div>
+  <div class="stat"><div class="stat-val">8K+</div><div class="stat-label">group members</div></div>
+  <div class="stat"><div class="stat-val">6.5M+</div><div class="stat-label">visits contributed to</div></div>
+  <div class="stat"><div class="stat-val">50K+</div><div class="stat-label">total community members</div></div>
+  <div class="stat"><div class="stat-val">4</div><div class="stat-label">groups owned</div></div>
+</div>
+
+<div class="section-wrap" id="projects">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">projects</div>
+    <h2 class="section-title">Games &amp; <span>Groups</span></h2>
+  </div>
+  <div class="projects-grid" id="projects-grid"></div>
+</div>
+
+<div class="section-wrap" id="about">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">about</div>
+    <h2 class="section-title">Player <span>Stats</span></h2>
+  </div>
+  <div class="about-layout">
+    <div class="about-card reveal">
+      <div class="about-card-title">// QUICK FACTS</div>
+      <div class="fact-row"><span class="ico">🎮</span><span>Roblox dev with <strong>1.5M+ visits</strong> across my own games</span></div>
+      <div class="fact-row"><span class="ico">🤝</span><span>Contributed to <strong>6.5M+ visits</strong> &amp; <strong>50K+ group members</strong> total</span></div>
+      <div class="fact-row"><span class="ico">⛏</span><span>Certified Minecraft addict — <strong>1,000+ hours</strong> and counting</span></div>
+      <div class="fact-row"><span class="ico">📚</span><span>Currently learning <strong>Lua scripting</strong> for Roblox</span></div>
+      <div class="fact-row"><span class="ico">🍞</span><span>Trying to make a bread piece fall exactly like toast. <strong>Physics hard.</strong></span></div>
+      <div class="fact-row"><span class="ico">📧</span><span>he/him · <a href="mailto:aqplemine@proton.me">aqplemine@proton.me</a></span></div>
+    </div>
+    <div class="about-card reveal" id="skill-card">
+      <div class="about-card-title">// SKILL LEVELS</div>
+      <div class="skill"><div class="skill-head"><span>Roblox Studio</span><span>75%</span></div><div class="skill-track"><div class="skill-thumb" data-w="75" style="background:linear-gradient(90deg,var(--lime),var(--teal))"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>Lua Scripting</span><span>55%</span></div><div class="skill-track"><div class="skill-thumb" data-w="55" style="background:linear-gradient(90deg,var(--teal),var(--blue))"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>Game Design</span><span>80%</span></div><div class="skill-track"><div class="skill-thumb" data-w="80" style="background:linear-gradient(90deg,var(--amber),var(--pink))"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>Minecraft</span><span>99%</span></div><div class="skill-track"><div class="skill-thumb" data-w="99" style="background:linear-gradient(90deg,var(--lime),#a0ff57)"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>GitHub</span><span>25%</span></div><div class="skill-track"><div class="skill-thumb" data-w="25" style="background:linear-gradient(90deg,#a0a0ff,var(--blue))"></div></div></div>
+      <div class="skill"><div class="skill-head"><span>Bread Physics</span><span>12%</span></div><div class="skill-track"><div class="skill-thumb" data-w="12" style="background:linear-gradient(90deg,var(--amber),var(--pink))"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap" id="contact">
+  <div class="contact-blob reveal">
+    <div class="contact-orb"></div>
+    <h2>Let's Build Something.</h2>
+    <p>Down to collab on Roblox games and groups. Got an idea? Hit me up.</p>
+    <div class="contact-cta">
+      <a href="mailto:aqplemine@proton.me" class="btn btn-fill">✉ Email Me</a>
+      <a href="https://github.com/aqplemine" target="_blank" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>made with <span class="footer-dot">♥</span> and a lot of guessing — aqplemine</p>
+  <p>© 2025 · aqplemine.github.io</p>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
+  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
+  ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+  ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+  ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
+
+  👇 EDIT YOUR PROJECT LINKS HERE
+     Change each "url" value to your actual Roblox link.
+     Set url: "#" to temporarily disable a link.
+══════════════════════════════════════════════════════════ */
+const CONFIG = {
+  projects: [
+    {
+      icon: "🪑",
+      title: "OH NO, OUR TABLE, IT'S BROKEN!",
+      desc: "My main active project. Chaotic fun. Involves a table. Play it to find out the rest.",
+      status: "active",
+      tags: ["Roblox", "Game"],
+      linkLabel: "Play on Roblox",
+      url: "https://www.roblox.com/games",   // ← PASTE YOUR GAME LINK HERE
+      color: { glow: "rgba(200,255,87,.07)", border: "rgba(200,255,87,.3)", shadow: "rgba(200,255,87,.1)" }
+    },
+    {
+      icon: "💼",
+      title: "IRS, Open Up. 1–3",
+      desc: "A growing series — three chapters deep. The IRS will not be prepared.",
+      status: "active",
+      tags: ["Roblox", "Series", "Game"],
+      linkLabel: "Play on Roblox",
+      url: "https://www.roblox.com/games",   // ← PASTE YOUR GAME LINK HERE
+      color: { glow: "rgba(0,232,200,.07)", border: "rgba(0,232,200,.3)", shadow: "rgba(0,232,200,.1)" }
+    },
+    {
+      icon: "🎮",
+      title: "We Have Gamez",
+      desc: "My main Roblox group. Home base for a bunch of games and general chaos. 8K+ members strong.",
+      status: "group",
+      tags: ["Group", "8K+ Members"],
+      linkLabel: "Join Group",
+      url: "https://www.roblox.com/groups",  // ← PASTE YOUR GROUP LINK HERE
+      color: { glow: "rgba(255,179,71,.07)", border: "rgba(255,179,71,.3)", shadow: "rgba(255,179,71,.1)" }
+    },
+    {
+      icon: "🏗️",
+      title: "Idiot Studios",
+      desc: "My dev studio. The name is self-explanatory. Part of the 6.5M+ visits ecosystem.",
+      status: "group",
+      tags: ["Studio", "6.5M+ Visits"],
+      linkLabel: "View Group",
+      url: "https://www.roblox.com/groups",  // ← PASTE YOUR GROUP LINK HERE
+      color: { glow: "rgba(255,95,160,.07)", border: "rgba(255,95,160,.3)", shadow: "rgba(255,95,160,.1)" }
+    },
+    {
+      icon: "👥",
+      title: "HLIWTPH Staff Members",
+      desc: "Staff group for one of my games. Building a whole little community around it.",
+      status: "group",
+      tags: ["Staff Group"],
+      linkLabel: "View Group",
+      url: "https://www.roblox.com/groups",  // ← PASTE YOUR GROUP LINK HERE
+      color: { glow: "rgba(90,184,255,.07)", border: "rgba(90,184,255,.3)", shadow: "rgba(90,184,255,.1)" }
+    },
+    {
+      icon: "❓",
+      title: "hi lol idk what to put here",
+      desc: "It's a group. I own it. The name was a placeholder that became permanent. Classic.",
+      status: "group",
+      tags: ["Group"],
+      linkLabel: "View Group",
+      url: "https://www.roblox.com/groups",  // ← PASTE YOUR GROUP LINK HERE
+      color: { glow: "rgba(160,160,255,.07)", border: "rgba(160,160,255,.3)", shadow: "rgba(160,160,255,.1)" }
+    }
+  ]
+};
+/* ══════════════════════════════════════════════════════════
+   END CONFIG — no need to edit below this line
+══════════════════════════════════════════════════════════ */
+
+const statusMap = {
+  active: { cls: "status-active", label: "Active" },
+  wip:    { cls: "status-wip",    label: "In Progress" },
+  group:  { cls: "status-group",  label: "Group" }
+};
+
+const grid = document.getElementById("projects-grid");
+CONFIG.projects.forEach((p, i) => {
+  const s = statusMap[p.status] || statusMap.wip;
+  const tagsHTML = p.tags.map(t => `<span class="p-tag">${t}</span>`).join("");
+  const el = document.createElement("div");
+  el.className = "p-card reveal";
+  el.style.cssText = `--card-glow:${p.color.glow};--card-border:${p.color.border};--card-shadow:${p.color.shadow};transition-delay:${i*0.07}s`;
+  el.innerHTML = `
+    <div class="p-card-top">
+      <div class="p-card-icon">${p.icon}</div>
+      <span class="p-card-status ${s.cls}">${s.label}</span>
+    </div>
+    <h3>${p.title}</h3>
+    <p>${p.desc}</p>
+    <div class="p-card-tags">${tagsHTML}</div>
+    <a href="${p.url}" target="_blank" class="p-card-link">
+      ${p.linkLabel}
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 12L12 2M12 2H5M12 2v7"/>
+      </svg>
+    </a>`;
+  grid.appendChild(el);
+});
+
+// Scroll reveal + skill bar trigger
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("visible");
+    if (e.target.id === "skill-card") {
+      e.target.querySelectorAll(".skill-thumb").forEach(b => { b.style.width = b.dataset.w + "%"; });
+    }
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
