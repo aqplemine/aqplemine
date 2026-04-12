@@ -47,10 +47,10 @@ A series. Three parts deep. The IRS doesn't play around.
 
 | group | vibe | link |
 |-------|------|-------|
-| 🎮 **We Have Gamez** | main project as of rn · 8K+ members | [here - Roblox](https://roblox.com/communities/314396515/) |
+| ❓ **hi lol idk what to put here** | my group - game studio |[here - Roblox](https://roblox.com/communities/32438301) |
+| 🎮 **We Have Gamez** | main group project as of rn · 8K+ members | [here - Roblox](https://roblox.com/communities/314396515/) |
 | 🏗️ **Idiot Studios** | my scratch dev studio · on [scratch.mit.edu](scratch.mit.edu) | [here - Scratch](https://scratch.mit.edu/studios/33235609) |
 | 👥 **HLIWTPH Staff Members** | staff group for HLIWTPH | [here - Roblox](https://www.roblox.com/communities/307353416) |
-| ❓ **hi lol idk what to put here** | my group - game studio |[here - Roblox](https://roblox.com/communities/32438301) |
 
 ---
 
