@@ -33,6 +33,13 @@ I make Roblox games. Some of them go kinda hard ngl.
 
 ---
 
+## ⛏️ working on rn (github)
+### 🤖 A app that lets a AI control your Roblox screen (Windows): Move, use your keyboard, chat, etc.
+### 🤖 A app that lets a AI control your Minecraft screen (Windows): Move, use your keyboard, chat, etc.
+### 🐧 A app that's a sandbox and lets a locally-hosted AI control it (Linux - NVIDIA DGX Spark): Host a local AI and let it control a VIRTUAL LINUX (like a virtual machine,) and yeah.
+### 🎶 A app that recommends songs based off of your listening history (Website, Spotify API): Basically, swipefy off of temu or wish.
+### ⭐ A app that recommends repo's based off of your stars history (Website, GitHub API): Star, view, and get recommended repo's from what YOU are interested in.
+
 ## 🔨 current projects
 
 ### 🪑 [OH NO, OUR TABLE, IT'S BROKEN!](https://roblox.com/games/109300381929911)
@@ -47,10 +54,7 @@ A series. Three parts deep. The IRS doesn't play around.
 
 | group | vibe | link |
 |-------|------|-------|
-| ❓ **hi lol idk what to put here** | my group - game studio |[here - Roblox](https://roblox.com/communities/32438301) |
-| 🎮 **We Have Gamez** | main group project as of rn · 8K+ members | [here - Roblox](https://roblox.com/communities/314396515/) |
-| 🏗️ **Idiot Studios** | my scratch dev studio · on [scratch.mit.edu](scratch.mit.edu) | [here - Scratch](https://scratch.mit.edu/studios/33235609) |
-| 👥 **HLIWTPH Staff Members** | staff group for HLIWTPH | [here - Roblox](https://www.roblox.com/communities/307353416) |
+coming soon!
 
 ---
 
